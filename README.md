@@ -37,10 +37,10 @@ has_one :purchase_record
 ## purchase_records  
 <!-- 購入管理 -->
 
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| item_id       | integer | null: false, foreign_key: true |
-| user_id       | integer | null: false, foreign_key: true |
+| Column     | Type       | Options                        |
+| ---------- | ---------- | ------------------------------ |
+| item       | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
