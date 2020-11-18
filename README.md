@@ -14,30 +14,28 @@
 ### Association
 
 * has_many :items
-* has_many :purchase_record
+* has_many :purchase_records
 
 ## items
 <!-- 商品 -->
 
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| name          | string  | null: false                    |
-| price         | string  | null: false                    |
-| image         | string  | null: false                    |
-| description   | string  | null: false                    |
-<!-- | category        | string | null: false | -->
-| status   　　　| string  | null: false                    |
-| shipping_cost | string  | null: false                    |
-| prefecture_id | string  | null: false                    |
-| shipping_days | string  | null: false                    |
-| user_id       | integer | null: false, foreign_key: true |
+| Column           | Type    | Options                        |
+| ---------------- | ------- | ------------------------------ |
+| name             | string  | null: false                    |
+| price            | integer | null: false, foreign_key: true |
+| description      | text    | null: false                    |
+| status_id   　　　| integer | null: false, foreign_key: true |
+| shipping_cost_id | integer | null: false, foreign_key: true |
+| prefecture_id    | integer | null: false, foreign_key: true |
+| shipping_days_id | integer | null: false, foreign_key: true |
+| user_id          | integer | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
 has_one :purchase_record
 
-## purchase_record  
-<!-- 購入記録 -->
+## purchase_records  
+<!-- 購入管理 -->
 
 | Column        | Type    | Options                        |
 | ------------- | ------- | ------------------------------ |
@@ -46,21 +44,21 @@ has_one :purchase_record
 
 ### Association
 belongs_to :user
-belongs_to :items
+belongs_to :item
 has_one :destination
 
-## destination  
+## destinations  
 <!-- 配送先 -->
 
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| post_code     | string  | null: false                    |
-| prefecture    | string  | null: false                    |
-| city          | string  | null: false                    |
-| address       | string  | null: false                    |
-| building_name | string  |                                |
-| phone_number  | string  | null: false                    |
-| user_id       | integer | null: false, foreign_key: true |
+| Column                    | Type    | Options                        |
+| ------------------------- | ------- | ------------------------------ |
+| post_code                 | string  | null: false                    |
+| prefecture_id             | integer | null: false, foreign_key: true |
+| city                      | string  | null: false                    |
+| address                   | string  | null: false                    |
+| building_name             | string  |                                |
+| phone_number              | string  | null: false                    |
+| purchase_record_id        | integer | null: false, foreign_key: true |
 
 ### Association
 belongs_to :purchase_record
