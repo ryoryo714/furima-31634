@@ -10,7 +10,7 @@ class Item < ApplicationRecord
     validates :status_id
     validates :shipping_cost_id
     validates :prefecture_id
-    validates :shipping_days_id
+    validates :shipping_day_id
   end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -26,5 +26,5 @@ class Item < ApplicationRecord
   belongs_to :shipping_cost
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :shipping_days
+  belongs_to :shipping_day
 end
