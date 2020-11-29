@@ -8,11 +8,10 @@ RSpec.describe Item, type: :model do
   describe '商品登録' do
     context '商品登録がうまくいくとき' do
       it "商品名、出品画像、商品の説明、価格、カテゴリー、商品の状態、配送料の負担、発送元の地域、発送までの日数がある場合" do
-        item = FactoryBot.build(:item)
-
-        item.valid?
+         expect(@item).to be_valid
       end
     end
+
     context '商品登録がうまくいかないとき' do
       it "商品名がない場合" do
         @item.name = ""
@@ -26,10 +25,31 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
 
+      it "商品の画像がない場合" do
+        @item.image = nil
+        
+        @item.valid?
+       
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+
       it "価格がない場合" do
         @item.price = ""
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
+      end  
+
+      it "価格が299円以下の場合" do
+        @item.price = "100"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than 300")
+      end  
+
+      it "価格が10000000円以上の場合" do
+        @item.price = "1000000000"
+        @item.valid?
+        
+        expect(@item.errors.full_messages).to include("Price must be less than 10000000")
       end  
 
       it "カテゴリーがない場合" do
