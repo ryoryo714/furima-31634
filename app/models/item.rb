@@ -6,7 +6,7 @@ class Item < ApplicationRecord
     validates :name
     validates :price, length: {minimum: 3, maxinum: 7},numericality: { only_integer: true,
       greater_than: 300, less_than: 10000000
-      }
+      }, format: {with: /\A[0-9]+\z/}
     validates :description
     validates :category_id
     validates :status_id
@@ -18,16 +18,8 @@ class Item < ApplicationRecord
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :status
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :shipping_cost
-
-  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :shipping_day
 end
