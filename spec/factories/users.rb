@@ -6,7 +6,7 @@ FactoryBot.define do
     family_name_kana      {"ヤマダ"}
     first_name_kana       {"タロウ"}
     birth_day             {"1999-07-14"}
-    email                 {"testman@example.com"}
+    email                 {"testman3@example.com"}
     password              {"pas111"}
     password_confirmation {"pas111"}
   end
