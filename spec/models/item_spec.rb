@@ -40,13 +40,13 @@ RSpec.describe Item, type: :model do
       end  
 
       it "価格が299円以下の場合" do
-        @item.price = "100"
+        @item.price = 100
         @item.valid?
         expect(@item.errors.full_messages).to include("Price must be greater than 300")
       end  
 
       it "価格が10000000円以上の場合" do
-        @item.price = "1000000000"
+        @item.price = 1000000000
         @item.valid?
         
         expect(@item.errors.full_messages).to include("Price must be less than 10000000")
