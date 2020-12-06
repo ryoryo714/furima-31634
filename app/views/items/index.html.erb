@@ -126,31 +126,34 @@
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
       <li class='list'>
-        
-        <div class='item-img-content'>
             <% @items.each do |item| %>
                 <%= link_to item_path(item.id), method: :get do %>
-                <%= image_tag item.image, size: '270x270' %>
-                <div class='item-info'>
-                  <h3 class='item-name'>
-                    <%= item.name %>
-                  </h3>
-                  <div class='item-price'>
-                    <span><%= item.price %>円<br><%= item.shipping_cost.name %></span>
-                    <div class='star-btn'>
-                      <%= image_tag "star.png", class:"star-icon" %>
-                      <span class='star-count'>0</span>
+                <div class='item-img-content'>
+                  <%= image_tag item.image, class: "item-img" %>
+                    <%# 商品が売れていればsold outを表示しましょう %>
+                    <% if item.purchase_record.present? %> 
+                      <div class='sold-out'>
+                        <span>Sold Out!!</span>
+                      </div>
+                    <% end %> 
+                  <%# //商品が売れていればsold outを表示しましょう %>
+                </div>
+                  <div class='item-info'>
+                    <h3 class='item-name'>
+                      <%= item.name %>
+                    </h3>
+                    <div class='item-price'>
+                      <span><%= item.price %>円<br><%= item.shipping_cost.name %></span>
+                      <div class='star-btn'>
+                        <%= image_tag "star.png", class:"star-icon" %>
+                        <span class='star-count'>0</span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                <% end %>
             <% end %>
-          <%# **のちに使うので消さない　　　商品が売れていればsold outを表示しましょう %>
-                                          <%# <div class='sold-out'>
-                                            <span>Sold Out!!</span>
-                                          </div> %>
-          <%# **のちに使うので消さない　　　//商品が売れていればsold outを表示しましょう %>
-        </div>
-        <% end %>
+        
+        
       </li>
       <% if @items.length == 0 %>　　 <%# 商品がない場合のダミーif文（メモ） %>
         <li class='list'>
