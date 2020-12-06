@@ -12,6 +12,7 @@ class Order
     validates :address
     validates :phone_number
     validates :token
+    validates :prefecture_id
   end
 
   def save
